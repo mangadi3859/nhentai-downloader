@@ -4,7 +4,7 @@
 
 ![version](https://img.shields.io/github/package-json/v/mangadi3859/nhentai-downloader?filename=package.json&style=flat-square&logo=json&logoColor=blue)
 ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/w/mangadi3859/nhentai-downloader/main?logo=github&color=yellow)
-[![issues](https://img.shields.io/github/issues/mangadi3859/nhentai-downloader?color=yellow&logo=github&logoColor=yellow&style=flat-square)](https://github.com/mangadi3859/doujin2/issues)
+[![issues](https://img.shields.io/github/issues/mangadi3859/nhentai-downloader?color=yellow&logo=github&logoColor=yellow&style=flat-square)](https://github.com/mangadi3859/nhentai-downloader/issues)
 [![typescript](https://img.shields.io/github/package-json/dependency-version/mangadi3859/nhentai-downloader/dev/typescript?logo=typescript&style=flat-square)](https://www.npmjs.com/package/typescript)
 
 <img src="assets/preview.gif" style="width: 80%; height: auto; margin-top: 1rem;" />
@@ -52,6 +52,8 @@ But permanent URL has limited usage **100k request/month**.
 
 ## Change Log
 
-### Version 0.1.0
+### Version 1.1.0
 
--   Initial Release
+-   Fix: fix image scaling issue
+-   Fix: fix flex overflow on Kiwi Browser
+-   Fix: fix local storage not saving just cors URL

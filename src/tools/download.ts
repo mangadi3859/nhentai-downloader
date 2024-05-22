@@ -1,7 +1,7 @@
 import { jsPDF } from "jspdf";
 import { INhentaiGalleryResult, ArrayType } from "./types";
 
-const STUPID_NUMBER = 1.35;
+const STUPID_NUMBER = 1;
 
 export default async function downloadGallery(cors: string, cb: (progress: number, max: number, status: boolean) => any): Promise<void> {
     const regexID = new RegExp(/(?<=^(https?:\/\/|www\.)?nhentai\.net\/g\/)(\d+)(?=\/$)?/, "i");

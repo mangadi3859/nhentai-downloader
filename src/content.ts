@@ -23,6 +23,7 @@ async function nhentaiDownloader() {
 
     justcorsWarning.innerHTML = `<div data-cors-error>Invalid justcors url |</div> <a target="_blank" style="cursor: pointer; color: #ed2553;" href="https://justcors.com">Get JustCors URL</a> | <a style="cursor: pointer; color: #ed2553" data-set-cors>Change JustCors</a>`;
     justcorsWarning.style.display = "flex";
+    justcorsWarning.style.flexWrap = "wrap";
     justcorsWarning.style.gap = ".5rem";
 
     downloadBtn.classList.add("btn", "btn-primary");
@@ -31,6 +32,7 @@ async function nhentaiDownloader() {
     span.style.marginLeft = ".5rem";
     span.innerText = DOWNLOAD_STRING;
 
+    await checkJustcors();
     downloadBtn.append(icon, span);
     buttonContainer.append(downloadBtn);
     buttonContainer.append(justcorsWarning);
@@ -39,13 +41,16 @@ async function nhentaiDownloader() {
 
     downloadBtn.addEventListener("click", async (e) => {
         if (!(await checkJustcors())) return;
+        downloadBtn.style.cursor = "not-allowed";
+        (<HTMLSpanElement>downloadBtn.querySelector("span")).innerText = `Downloading... (?/?)`;
+
         downloadGallery((await chrome.storage.local.get([CORS_KEY]))[CORS_KEY], (progress, max, status) => {
             downloadBtn.disabled = !status;
             if (!status) {
                 downloadBtn.style.cursor = "not-allowed";
                 (<HTMLSpanElement>downloadBtn.querySelector("span")).innerText = `Downloading... (${progress}/${max})`;
             } else {
-                downloadBtn.style.cursor = "cursor";
+                downloadBtn.style.cursor = "pointer";
                 (<HTMLSpanElement>downloadBtn.querySelector("span")).innerText = DOWNLOAD_STRING;
             }
         });

@@ -3,7 +3,7 @@
     "name": "Nhentai Downloader",
     "author": "https://github.com/mangadi3859",
     "description": "Download any nhentai gallery as PDF file",
-    "version": "0.1.0",
+    "version": "1.1.0",
     "icons": {
         "128": "/assets/logo.png"
     },
