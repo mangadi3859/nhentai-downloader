@@ -50,10 +50,6 @@ But permanent URL has limited usage **100k request/month**.
 
 -   Now you can try to visit [nhentai.net](https://nhentai.net) and try to download your favorite doujins.
 
-### Note
-
-Take a note that this extension will only work after you get completely blocked after the [**3 strikes**](https://www.androidauthority.com/youtube-three-strikes-policy-block-ads-3340340/)
-
 ## Change Log
 
 ### Version 0.1.0
