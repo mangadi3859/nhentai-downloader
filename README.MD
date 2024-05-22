@@ -16,7 +16,7 @@ This extension add additional download button when visiting [gallery](https://nh
 
 ## Requirements?
 
-In order to use this extension, you must have [JustCors](https://justcors.com) url to work. You can use **temporary URL** or use **permanent URL** provided by JustCors.
+In order to use this extension, you must have [JustCors](https://justcors.com) URL. You can use **temporary URL** or use **permanent URL** provided by JustCors.
 
 ## Temporary URL?
 
