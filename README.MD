@@ -54,7 +54,7 @@ But permanent URL has limited usage **100k request/month**.
 
 -   [Download](https://github.com/mangadi3859/nhentai-downloader/archive/refs/heads/main.zip) the zip file.
 
--   Open Kiwi Browser and open Settings > Extension [chrome://extensions](chrome://extensions).
+-   Open Kiwi Browser and open Settings > Extension.
     ![K1](./assets/K1.png)
     ![K2](./assets/K2.png)
 
