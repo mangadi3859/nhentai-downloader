@@ -7,7 +7,7 @@
 [![issues](https://img.shields.io/github/issues/mangadi3859/nhentai-downloader?color=yellow&logo=github&logoColor=yellow&style=flat-square)](https://github.com/mangadi3859/nhentai-downloader/issues)
 [![typescript](https://img.shields.io/github/package-json/dependency-version/mangadi3859/nhentai-downloader/dev/typescript?logo=typescript&style=flat-square)](https://www.npmjs.com/package/typescript)
 
-<img src="assets/preview.gif" style="width: 80%; height: auto; margin-top: 1rem;" />
+<img src="assets/preview.gif" style="max-width: 100%; height: auto; margin-top: 1rem;" />
 </div>
 
 ## What is this?
@@ -47,6 +47,23 @@ But permanent URL has limited usage **100k request/month**.
 
 -   After that you should find an extension called **Nhentai Downloader**
     ![part-6](./assets/part-6.png)
+
+-   Now you can try to visit [nhentai.net](https://nhentai.net) and try to download your favorite doujins.
+
+### Kiwi Browser (Android):
+
+-   [Download](https://github.com/mangadi3859/nhentai-downloader/archive/refs/heads/main.zip) the zip file.
+
+-   Open Kiwi Browser and open Settings > Extension [chrome://extensions](chrome://extensions).
+    ![K1](./assets/K1.png)
+    ![K2](./assets/K2.png)
+
+-   Turn on **Developer Mode** in the top right corner.
+-   Select `pick from .zip` and pick the zip file you just downloaded
+    ![K3](./assets/K3.png)
+
+-   After that you should find an extension called **Nhentai Downloader**
+    ![K4](./assets/K4.png)
 
 -   Now you can try to visit [nhentai.net](https://nhentai.net) and try to download your favorite doujins.
 
