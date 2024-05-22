@@ -32,7 +32,7 @@ But permanent URL has limited usage **100k request/month**.
 
 ### Chrome:
 
--   [Download](https://github.com/mangadi3859/youtube-block-bypass-extension/archive/refs/heads/main.zip) the zip file.
+-   [Download](https://github.com/mangadi3859/nhentai-downloader/archive/refs/heads/main.zip) the zip file.
 
 -   Extract the zip file.
 
