@@ -42,6 +42,7 @@ async function nhentaiDownloader() {
     downloadBtn.addEventListener("click", async (e) => {
         if (!(await checkJustcors())) return;
         downloadBtn.style.cursor = "not-allowed";
+        downloadBtn.disabled = true;
         (<HTMLSpanElement>downloadBtn.querySelector("span")).innerText = `Downloading... (?/?)`;
 
         downloadGallery((await chrome.storage.local.get([CORS_KEY]))[CORS_KEY], (progress, max, status) => {
