@@ -1,8 +1,6 @@
 import { jsPDF } from "jspdf";
 import { INhentaiGalleryResult, ArrayType } from "./types";
 
-const STUPID_NUMBER = 1;
-
 export default async function downloadGallery(cors: string, cb: (progress: number, max: number, status: boolean) => any): Promise<void> {
     const regexID = new RegExp(/(?<=^(https?:\/\/|www\.)?nhentai\.net\/g\/)(\d+)(?=\/$)?/, "i");
     const code = window.location.href.match(regexID);
@@ -23,35 +21,21 @@ export default async function downloadGallery(cors: string, cb: (progress: numbe
 
     let completion = 0;
     let images = await queue<ArrayType<INhentaiGalleryResult["images"]["pages"]>>(gallery.images.pages, async (image, i) => {
-        let img: Blob = await (
+        let img: ArrayBuffer = await (
             await fetch(`${cors}https://i3.nhentai.net/galleries/${gallery.media_id}/${i + 1}.${image.t == "j" ? "jpg" : "png"}`, {
                 headers: {
                     accept: "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;",
                 },
             })
-        ).blob();
+        ).arrayBuffer();
 
-        toDataURI(img, (base64) => {
-            doc.setPage(i + 1);
-            if (i != 0) {
-                doc.addImage(base64, "jpeg", 0, 0, Math.floor(image.w * STUPID_NUMBER), Math.floor(image.h * STUPID_NUMBER), i.toString());
-            } else doc.addImage(base64, "jpeg", 0, 0, Math.floor(image.w * STUPID_NUMBER), Math.floor(image.h * STUPID_NUMBER), i.toString());
-            completion++;
-            cb(completion, gallery.images.pages.length, tryToSave(completion, gallery, doc));
-        });
+        doc.setPage(i + 1);
+        if (i != 0) {
+            doc.addImage(new Uint8Array(img), "jpeg", 0, 0, Math.floor(image.w), Math.floor(image.h), i.toString());
+        } else doc.addImage(new Uint8Array(img), "jpeg", 0, 0, Math.floor(image.w), Math.floor(image.h), i.toString());
+        completion++;
+        cb(completion, gallery.images.pages.length, tryToSave(completion, gallery, doc));
     });
-}
-
-function toDataURI(blob: Blob, cb: (e: string) => any): void {
-    let file = new FileReader();
-    file.addEventListener(
-        "load",
-        (e) => {
-            cb(<string>e.target?.result);
-        },
-        { once: true }
-    );
-    file.readAsDataURL(blob);
 }
 
 function tryToSave(completion: number, gallery: INhentaiGalleryResult, doc: jsPDF): boolean {

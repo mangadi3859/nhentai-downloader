@@ -1,5 +1,6 @@
 import downloadGallery from "./tools/download";
 
+const VERSION = "v1.1.5";
 const DOWNLOAD_STRING = "Download PDF";
 const CORS_KEY = "jc-url";
 
