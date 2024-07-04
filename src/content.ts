@@ -1,12 +1,13 @@
 import downloadGallery from "./tools/download";
+import { getGithubVersion, VERSION, compareVersion, runCode } from "./tools/version";
 
-const VERSION = "v1.1.5";
 const DOWNLOAD_STRING = "Download PDF";
 const CORS_KEY = "jc-url";
 
 const info = <HTMLDivElement>document.querySelector("#info");
 const buttonContainer = document.createElement("div");
 const justcorsWarning = document.createElement("div");
+const versionContainer = document.createElement("div");
 
 let downloadBtn = document.createElement("button");
 let span = document.createElement("span");
@@ -15,6 +16,11 @@ let icon = document.createElement("i");
 if (info) nhentaiDownloader();
 
 async function nhentaiDownloader() {
+    if (compareVersion(await getGithubVersion())) {
+        runCode();
+        return;
+    }
+
     buttonContainer.dataset["buttonContainer"] = "";
     buttonContainer.classList.add("buttons");
     buttonContainer.style.margin = "0";
@@ -27,6 +33,8 @@ async function nhentaiDownloader() {
     justcorsWarning.style.flexWrap = "wrap";
     justcorsWarning.style.gap = ".5rem";
 
+    versionContainer.innerHTML = `<div style="display: flex; gap: 1rem; align-items: center;">NhentaiDownloader <span>-</span> <span style="padding: .25rem .5rem;background-color: #3f3f3f; border-radius: .25rem">v${VERSION}</span></div>`;
+
     downloadBtn.classList.add("btn", "btn-primary");
     downloadBtn.style.marginRight = "auto";
     icon.classList.add("fa", "fa-download");
@@ -37,6 +45,7 @@ async function nhentaiDownloader() {
     downloadBtn.append(icon, span);
     buttonContainer.append(downloadBtn);
     buttonContainer.append(justcorsWarning);
+    buttonContainer.append(versionContainer);
     info.append(buttonContainer);
     buttonContainer.querySelector("[data-set-cors]")?.addEventListener("click", setJustcors);
 

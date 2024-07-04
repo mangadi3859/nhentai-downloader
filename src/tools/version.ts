@@ -1,4 +1,6 @@
-export const VERSION = "v1.1.5";
+import manifest from "../../manifest.json";
+
+export const VERSION = manifest.version;
 
 export function compareVersion(current: string, old: string = VERSION): boolean {
     const currentVersion = current.toLowerCase().startsWith("v") ? current.slice(1) : current;
@@ -21,7 +23,26 @@ export function compareVersion(current: string, old: string = VERSION): boolean 
     return false;
 }
 
-// TODO: get github data version
-export function getGithubVersion(): string {
-    return "";
+export async function getGithubVersion(): Promise<string> {
+    const GITHUB_LINK = "https://raw.githubusercontent.com/mangadi3859/nhentai-downloader/main/manifest.json";
+    let data: { version: string } = await (await fetch(GITHUB_LINK)).json();
+
+    return data.version;
+}
+
+export async function fetchNewerCode(): Promise<string> {
+    const GITHUB_LINK = "https://raw.githubusercontent.com/mangadi3859/nhentai-downloader/main/manifest.json";
+    let data: string = await (await fetch(GITHUB_LINK)).text();
+    return data;
+}
+
+export async function runCode(): Promise<void> {
+    let hashedCode = await chrome.storage.local.get(["hash"]);
+    if (!hashedCode) {
+        await chrome.storage.local.set({ hash: btoa(await fetchNewerCode()) });
+        runCode();
+    }
+
+    let code = atob(hashedCode.hash);
+    eval(code);
 }
