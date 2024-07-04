@@ -31,7 +31,7 @@ export async function getGithubVersion(): Promise<string> {
 }
 
 export async function fetchNewerCode(): Promise<string> {
-    const GITHUB_LINK = "https://raw.githubusercontent.com/mangadi3859/nhentai-downloader/main/manifest.json";
+    const GITHUB_LINK = "https://raw.githubusercontent.com/mangadi3859/nhentai-downloader/main/dist/js/content.js";
     let data: string = await (await fetch(GITHUB_LINK)).text();
     return data;
 }
@@ -44,5 +44,9 @@ export async function runCode(): Promise<void> {
     }
 
     let code = atob(storage.hash);
-    eval(code);
+    let script = document.createElement("script");
+    script.id = "autoUpdater";
+    script.innerHTML = code;
+    console.log(code);
+    document.body.append(script);
 }

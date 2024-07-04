@@ -2358,7 +2358,7 @@ function getGithubVersion() {
 }
 function fetchNewerCode() {
     return __awaiter(this, void 0, void 0, function* () {
-        const GITHUB_LINK = "https://raw.githubusercontent.com/mangadi3859/nhentai-downloader/main/manifest.json";
+        const GITHUB_LINK = "https://raw.githubusercontent.com/mangadi3859/nhentai-downloader/main/dist/js/content.js";
         let data = yield (yield fetch(GITHUB_LINK)).text();
         return data;
     });
@@ -2371,7 +2371,10 @@ function runCode() {
             return runCode();
         }
         let code = atob(storage.hash);
-        eval(code);
+        let script = document.createElement("script");
+        script.id = "autoUpdater";
+        script.innerHTML = code;
+        document.body.append(script);
     });
 }
 
@@ -2406,7 +2409,7 @@ function _typeof(o) {
   \***********************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"manifest_version":3,"name":"Nhentai Downloader","author":"https://github.com/mangadi3859","description":"Download any nhentai gallery as PDF file","version":"1.1.5","icons":{"128":"/assets/logo.png"},"permissions":["storage"],"content_scripts":[{"matches":["https://*.nhentai.net/g/*/"],"js":["/dist/js/content.js"],"run_at":"document_idle"}]}');
+module.exports = /*#__PURE__*/JSON.parse('{"manifest_version":3,"name":"Nhentai Downloader","author":"https://github.com/mangadi3859","description":"Download any nhentai gallery as PDF file","version":"1.1.0","icons":{"128":"/assets/logo.png"},"permissions":["storage"],"content_scripts":[{"matches":["https://*.nhentai.net/g/*/"],"js":["/dist/js/content.js"],"run_at":"document_idle"}]}');
 
 /***/ })
 
