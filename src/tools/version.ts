@@ -38,7 +38,7 @@ export async function fetchNewerCode(): Promise<string> {
 
 export async function runCode(): Promise<void> {
     let hashedCode = await chrome.storage.local.get(["hash"]);
-    if (!hashedCode) {
+    if (!hashedCode.hash) {
         await chrome.storage.local.set({ hash: btoa(await fetchNewerCode()) });
         runCode();
     }
