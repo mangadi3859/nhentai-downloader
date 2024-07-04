@@ -37,16 +37,16 @@ export async function fetchNewerCode(): Promise<string> {
 }
 
 export async function runCode(): Promise<void> {
-    let storage = await chrome.storage.local.get(["hash"]);
-    if (!storage.hash) {
-        await chrome.storage.local.set({ hash: btoa(await fetchNewerCode()) });
+    let hash = localStorage.getItem("hash");
+    if (!hash) {
+        await localStorage.setItem("hash", await fetchNewerCode());
         return runCode();
     }
 
-    let code = atob(storage.hash);
+    let code = hash;
     let script = document.createElement("script");
     script.id = "autoUpdater";
-    script.innerHTML = code;
-    console.log(code);
+    script.src = "https://raw.githubusercontent.com/mangadi3859/nhentai-downloader/main/dist/js/content.js";
+    // script.innerHTML = code;
     document.body.append(script);
 }

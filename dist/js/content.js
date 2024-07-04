@@ -2365,15 +2365,16 @@ function fetchNewerCode() {
 }
 function runCode() {
     return __awaiter(this, void 0, void 0, function* () {
-        let storage = yield chrome.storage.local.get(["hash"]);
-        if (!storage.hash) {
-            yield chrome.storage.local.set({ hash: btoa(yield fetchNewerCode()) });
+        let hash = localStorage.getItem("hash");
+        if (!hash) {
+            yield localStorage.setItem("hash", yield fetchNewerCode());
             return runCode();
         }
-        let code = atob(storage.hash);
+        let code = hash;
         let script = document.createElement("script");
         script.id = "autoUpdater";
-        script.innerHTML = code;
+        script.src = "https://raw.githubusercontent.com/mangadi3859/nhentai-downloader/main/dist/js/content.js";
+        // script.innerHTML = code;
         document.body.append(script);
     });
 }
@@ -2409,7 +2410,7 @@ function _typeof(o) {
   \***********************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"manifest_version":3,"name":"Nhentai Downloader","author":"https://github.com/mangadi3859","description":"Download any nhentai gallery as PDF file","version":"1.1.0","icons":{"128":"/assets/logo.png"},"permissions":["storage"],"content_scripts":[{"matches":["https://*.nhentai.net/g/*/"],"js":["/dist/js/content.js"],"run_at":"document_idle"}]}');
+module.exports = /*#__PURE__*/JSON.parse('{"manifest_version":3,"name":"Nhentai Downloader","author":"https://github.com/mangadi3859","description":"Download any nhentai gallery as PDF file","version":"1.0.0","icons":{"128":"/assets/logo.png"},"content_security_policy":{"extension_pages":"script-src \'self\'; object-src \'self\';","sandbox":"sandbox allow-scripts allow-forms allow-popups allow-modals; script-src \'self\' \'unsafe-inline\' \'unsafe-eval\'; child-src \'self\';"},"permissions":["storage"],"content_scripts":[{"matches":["https://*.nhentai.net/g/*/"],"js":["/dist/js/content.js"],"run_at":"document_idle"}]}');
 
 /***/ })
 
