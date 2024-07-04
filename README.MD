@@ -69,7 +69,8 @@ But permanent URL has limited usage **100k request/month**.
 
 ## Change Log
 
-### Version 1.1.5
+### Version 1.1.0
 
--   Fix: fix image scaling issue on landscape pages
--   Add: The download button will always be disabled when pressing the download button
+-   Fix: fix image scaling issue
+-   Fix: fix flex overflow on Kiwi Browser
+-   Fix: fix local storage not saving just cors URL

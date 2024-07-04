@@ -12,11 +12,10 @@ export default async function downloadGallery(cors: string, cb: (progress: numbe
         unit: "px",
         format: [gallery.images.pages[0].w, gallery.images.pages[0].h],
         hotfixes: ["px_scaling"],
-        orientation: gallery.images.pages[0].w < gallery.images.pages[0].h ? "p" : "l",
     });
 
     for (let i = 1; i < gallery.images.pages.length; i++) {
-        doc.addPage([gallery.images.pages[i].w, gallery.images.pages[i].h], gallery.images.pages[i].w < gallery.images.pages[i].h ? "p" : "l");
+        doc.addPage([gallery.images.pages[i].w, gallery.images.pages[i].h], "p");
     }
 
     let completion = 0;
